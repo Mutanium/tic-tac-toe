@@ -2,7 +2,7 @@ package nl.phoyd;
 
 import java.util.Scanner;
 
-public class Main {
+public class  Main {
 
     public static void main(String[] args) {
 	    // welkomstbericht
@@ -17,34 +17,39 @@ public class Main {
             //System.out.println(board[i]);  //board is nu nog een enkele string van negen getallen, zie methode board hierna
         }
 
-        //methode board aanroepen
+        //methode board aanroepen om board te printen
         printBoard(board);
 
-        String currentPlayer = "x";
+        //Player aanmaken door de constructor aan te roepen uit de class Player
+        //met de parameters name cq "kruisje" en token cq "x"
+        Player playerA = new Player("kruisje","x");
+        Player playerB = new Player("Rondje","o");
 
-        boolean hasWon =false;
+        Player currentPlayer = playerA;
+
+        boolean hasWon = false;
 
         //zonder winconditie zal spel oneindig loopen
         while (hasWon == false) {
 
             // geef speler de mogelijkheid om een symbool te zetten
-            System.out.println("\n Voer een cijfer van 1 t/m 9 in om op het bord een " + currentPlayer + " te zetten");
+            System.out.println("\n Voer een cijfer van 1 t/m 9 in om op het bord een " + currentPlayer.getName() + " te zetten");
             Scanner userInput = new Scanner(System.in);
             int selectedField = userInput.nextInt();
             //board[positie] = X
-            board[selectedField - 1] = currentPlayer;
+            board[selectedField - 1] = currentPlayer.getToken();
 
             //methode board aanroepen
             printBoard(board);
 
-            hasWon = hasPlayerWon(board, currentPlayer);
+            hasWon = hasPlayerWon(board, currentPlayer.getToken());
             if (hasWon == true) {
-                System.out.println("\nBeste " + currentPlayer + " Gefeliciteerd, je hebt gewonnen.");
+                System.out.println("\nBeste " + currentPlayer.getName() + " Gefeliciteerd, je hebt gewonnen.");
                 break;
             }
 
             //wissel van speler
-            currentPlayer = switchPlayer(currentPlayer);
+            currentPlayer = switchPlayer (currentPlayer, playerA, playerB);
         }
 
         // opgelost met een if en break voor het wisselen van de speler
@@ -82,12 +87,12 @@ public class Main {
     }
 
     //methode om van speler te wisselen
-    public static String switchPlayer(String currentPlayer) {
-        if (currentPlayer == "x") {
-            return "o";
+    public static Player switchPlayer(Player currentPlayer, Player playerA, Player playerB ) {
+        if (currentPlayer.getToken() == "x") {
+            return playerB;
         }
         else{
-            return "x";
+            return playerA;
         }
 
     }
