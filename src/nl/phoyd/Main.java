@@ -95,47 +95,4 @@ public class  Main {
 
     }
 
-    //methode om van speler te wisselen
-    public static Player switchPlayer(Player currentPlayer, Player playerA, Player playerB ) {
-        if (currentPlayer.getToken() == "x") {
-            return playerB;
-        }
-        else{
-            return playerA;
-        }
-
-    }
-
-    //methode winconditie
-    public static boolean hasPlayerWon (String[] board, String currentPlayer){
-        //horizontaal winnen
-        if (board[0] == currentPlayer && board[1] == currentPlayer && board[2] == currentPlayer) {
-            return true;
-        }
-        if (board[3] == currentPlayer && board[4] == currentPlayer && board[5] == currentPlayer) {
-            return true;
-        }
-        if (board[6] == currentPlayer && board[7] == currentPlayer && board[8] == currentPlayer) {
-            return true;
-        }
-        //verticaal winnen
-        if (board[0] == currentPlayer && board[3] == currentPlayer && board[6] == currentPlayer) {
-            return true;
-        }
-        if (board[1] == currentPlayer && board[4] == currentPlayer && board[7] == currentPlayer) {
-            return true;
-        }
-        if (board[2] == currentPlayer && board[5] == currentPlayer && board[8] == currentPlayer) {
-            return true;
-        }
-        //diagonaal winnen
-        if (board[0] == currentPlayer && board[4] == currentPlayer && board[8] == currentPlayer) {
-            return true;
-        }
-        if (board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer) {
-            return true;
-        }
-
-        return false;
-    }
 }
